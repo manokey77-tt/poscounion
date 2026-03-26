@@ -109,7 +109,7 @@ const Hero = () => (
         <img 
           alt="Main Banner Image" 
           className="w-full h-56 object-cover rounded-2xl" 
-          src="banner.jpg"
+          src={`./banner.jpg?t=${new Date().getTime()}`}
           referrerPolicy="no-referrer"
           onError={(e) => {
             // Fallback to picsum if banner.jpg is missing
