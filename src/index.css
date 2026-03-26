@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0054a6;
+  --color-soft-blue: #E3F2FD;
+  --color-soft-yellow: #FFFDE7;
+  --font-sans: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+}
+
+@layer utilities {
+  .pastel-gradient {
+    background: linear-gradient(135deg, #E3F2FD 0%, #FFF9C4 100%);
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
