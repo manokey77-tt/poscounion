@@ -107,10 +107,14 @@ const Hero = () => (
     >
       <div className="bg-white p-4 rounded-3xl shadow-xl">
         <img 
-          alt="Living room with fast internet" 
+          alt="Main Banner Image" 
           className="w-full h-56 object-cover rounded-2xl" 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqWRzCMY92PGpMcf_yIwbEPZMbUdvcupMFEkf00W3bsb8gb7eQ1uc0j2aKLcMXEFsz8HSC6tbbLijvbw_aa4Dsat0xzrdZqJydxBkb_sMtwaqXOdg9Iiastag_0g00SOc8qJCtzfOHTC1LgHVMKmtKQuCk2f8flsAEhuDqhkXjW6GYxl5CATgpZA-Ek6mNzk4vlMFFaVzH00AajLDvUO-kMHwwbEkHRiBRo-N89ht3ubOAyTRegJHYBRT_lYiJlp0N2sbiIxih7lCX"
+          src="/banner.jpg"
           referrerPolicy="no-referrer"
+          onError={(e) => {
+            // Fallback to picsum if banner.jpg is missing
+            (e.target as HTMLImageElement).src = "https://picsum.photos/seed/cherry-blossom-lake/1200/800";
+          }}
         />
       </div>
       <div className="absolute -bottom-6 -right-4 bg-yellow-400 p-4 rounded-full shadow-lg border-4 border-white animate-bounce">
