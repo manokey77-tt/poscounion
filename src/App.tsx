@@ -65,7 +65,7 @@ const Navbar = () => (
 );
 
 const Hero = () => (
-  <section className="relative px-6 py-16 md:py-24 overflow-hidden text-center pastel-gradient">
+  <section className="relative px-6 py-12 md:py-24 overflow-hidden text-center pastel-gradient">
     <div className="absolute top-10 left-10 w-32 h-32 bg-white/40 rounded-full blur-3xl"></div>
     <div className="absolute bottom-10 right-10 w-48 h-48 bg-blue-200/30 rounded-full blur-3xl"></div>
     
@@ -89,8 +89,9 @@ const Hero = () => (
         인터넷+TV만 했는데
       </motion.div>
       
-      <h1 className="font-black text-3xl md:text-5xl lg:text-6xl leading-tight mb-6 text-slate-900 whitespace-nowrap">
-        현금 + 사은품 <span className="text-primary underline decoration-soft-yellow decoration-8 underline-offset-4">90만원 즉시 증정!</span>
+      <h1 className="font-black text-3xl md:text-5xl lg:text-6xl leading-tight mb-6 text-slate-900">
+        현금+사은품<br />
+        <span className="text-primary underline decoration-soft-yellow decoration-8 underline-offset-4">90만원 즉시 증정!</span>
       </h1>
       
       <p className="text-slate-600 text-base md:text-lg font-medium mb-10 leading-relaxed max-w-2xl mx-auto">
@@ -153,7 +154,7 @@ const PlanSelector = () => {
   }, [currentPlan]);
   
   return (
-    <section className="py-24 px-6 relative overflow-hidden">
+    <section className="py-16 md:py-24 px-6 relative overflow-hidden">
       <Toast 
         message="상품 정보가 복사되었습니다! 카톡에 붙여넣어주세요." 
         isVisible={showToast} 
@@ -166,7 +167,7 @@ const PlanSelector = () => {
       </div>
 
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col items-center mb-16 text-center">
+        <div className="flex flex-col items-center mb-10 md:mb-16 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -180,7 +181,7 @@ const PlanSelector = () => {
           <p className="text-slate-500 max-w-md">모바일을 포함하지 않은 사은품 가격 입니다!</p>
         </div>
 
-        <div className="bg-white rounded-[3rem] p-6 md:p-12 shadow-2xl shadow-slate-200/60 border border-slate-100 relative">
+        <div className="bg-white rounded-[3rem] p-5 md:p-12 shadow-2xl shadow-slate-200/60 border border-slate-100 relative">
           {/* Steps Indicator - Modern Style */}
           <div className="flex items-center justify-center gap-4 md:gap-12 mb-12">
             {[
@@ -261,7 +262,7 @@ const PlanSelector = () => {
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
             >
               {/* Left Side: Features */}
-              <div className="lg:col-span-7 bg-slate-50/50 rounded-[2rem] p-8 border border-slate-100 flex flex-col justify-between">
+              <div className="lg:col-span-7 bg-slate-50/50 rounded-[2rem] p-8 border border-slate-100 flex flex-col justify-between order-2 lg:order-1">
                 <div>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center">
@@ -304,7 +305,7 @@ const PlanSelector = () => {
               </div>
               
               {/* Right Side: Price & Support */}
-              <div className="lg:col-span-5 flex flex-col gap-4">
+              <div className="lg:col-span-5 flex flex-col gap-4 order-1 lg:order-2">
                 {/* Support Amount Highlight */}
                 <motion.div 
                   initial={{ x: 20, opacity: 0 }}
@@ -380,7 +381,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-20 px-6 max-w-4xl mx-auto">
+    <section className="py-12 md:py-20 px-6 max-w-4xl mx-auto">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-slate-900 mb-2">자주 묻는 질문</h2>
         <p className="text-slate-500">조합원님들이 가장 궁금해하시는 내용을 모았습니다.</p>
@@ -403,7 +404,7 @@ const FAQ = () => {
 };
 
 const Benefits = () => (
-  <section className="py-20 px-6 bg-soft-blue/30">
+  <section className="py-12 md:py-20 px-6 bg-soft-blue/30">
     <div className="max-w-5xl mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-3xl font-bold text-slate-900 mb-2">놓치면 아쉬운 BEST 5 혜택</h2>
@@ -452,7 +453,7 @@ const Benefits = () => (
 );
 
 const Footer = () => (
-  <footer className="w-full py-16 bg-white border-t border-slate-100 px-8 pb-32">
+  <footer className="w-full py-10 md:py-16 bg-white border-t border-slate-100 px-8 pb-32">
     <div className="max-w-screen-xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-10">
         <div>
