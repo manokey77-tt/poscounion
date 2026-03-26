@@ -177,7 +177,7 @@ const PlanSelector = () => {
             <span>스마트 요금 계산기</span>
           </motion.div>
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tight">내게 딱 맞는 요금 찾기</h2>
-          <p className="text-slate-500 max-w-md">어떤 상품이 나에게 유리할지 단계별로 확인해보세요!</p>
+          <p className="text-slate-500 max-w-md">모바일을 포함하지 않은 사은품 가격 입니다!</p>
         </div>
 
         <div className="bg-white rounded-[3rem] p-6 md:p-12 shadow-2xl shadow-slate-200/60 border border-slate-100 relative">
@@ -202,24 +202,50 @@ const PlanSelector = () => {
             ))}
           </div>
 
-          {/* Plan Tabs - Segmented Control Style */}
-          <div className="p-1.5 bg-slate-100/80 rounded-2xl mb-10 flex flex-wrap lg:flex-nowrap gap-1">
+          {/* Plan Tabs - Enhanced Visibility */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-10">
             {plans.map((plan) => (
               <button 
                 key={plan.id}
                 onClick={() => setSelectedPlanId(plan.id)}
-                className={`flex-1 py-4 px-3 rounded-xl font-bold text-xs md:text-sm transition-all relative ${
+                className={`group relative py-5 px-4 rounded-2xl font-bold text-sm transition-all duration-300 border-2 flex flex-col items-center gap-2 ${
                   selectedPlanId === plan.id 
-                  ? 'bg-white text-primary shadow-md ring-1 ring-slate-200/50' 
-                  : 'text-slate-500 hover:bg-white/50'
+                  ? 'bg-white border-primary text-primary shadow-xl shadow-primary/10 -translate-y-1' 
+                  : 'bg-slate-50 border-transparent text-slate-500 hover:bg-white hover:border-slate-200 hover:shadow-md'
                 }`}
               >
                 {plan.isBest && (
-                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 bg-primary text-white text-[8px] px-1.5 py-0.5 rounded-full uppercase tracking-tighter">
-                    Best
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-slate-900 text-[10px] px-3 py-1 rounded-full font-black shadow-sm z-10 flex items-center gap-1">
+                    <Gift className="w-3 h-3" />
+                    BEST
+                  </div>
+                )}
+                
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                  selectedPlanId === plan.id ? 'bg-primary/10' : 'bg-slate-200/50 group-hover:bg-slate-100'
+                }`}>
+                  {plan.id.includes('1G') ? <Zap className="w-5 h-5" /> : <Wifi className="w-5 h-5" />}
+                </div>
+
+                <div className="text-center">
+                  <span className="block text-[10px] opacity-60 mb-0.5">{plan.id.includes('1G') ? '1기가' : '500메가'}</span>
+                  <span className="block whitespace-nowrap">{plan.name.includes('+') ? plan.name.split(' + ')[1] : '인터넷 단독'}</span>
+                </div>
+
+                {selectedPlanId !== plan.id && (
+                  <span className="text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-1">
+                    클릭하여 선택
                   </span>
                 )}
-                {plan.name.replace('인터넷 ', '')}
+
+                {selectedPlanId === plan.id && (
+                  <motion.div 
+                    layoutId="active-indicator"
+                    className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-primary text-white p-1 rounded-full shadow-lg"
+                  >
+                    <CheckCircle2 className="w-3 h-3" />
+                  </motion.div>
+                )}
               </button>
             ))}
           </div>
@@ -266,15 +292,14 @@ const PlanSelector = () => {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-slate-200/60 flex items-center gap-4">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center overflow-hidden">
-                        <img src={`https://picsum.photos/seed/user${i}/40/40`} alt="user" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                      </div>
-                    ))}
+                <div className="pt-6 border-t border-slate-200/60 flex items-center gap-3">
+                  <div className="bg-green-50 text-green-600 p-2 rounded-xl">
+                    <CheckCircle2 className="w-5 h-5" />
                   </div>
-                  <p className="text-xs text-slate-500 font-medium">현재 <span className="text-primary font-bold">124명</span>의 조합원이 이 요금을 보고 있습니다.</p>
+                  <div>
+                    <p className="text-xs text-slate-900 font-black">포스코 노동조합 공식 제휴 인증 혜택</p>
+                    <p className="text-[10px] text-slate-500 mt-0.5">LG U+ 본사 직영 채널을 통해 검증된 조합원 전용 혜택입니다.</p>
+                  </div>
                 </div>
               </div>
               
@@ -308,9 +333,12 @@ const PlanSelector = () => {
                     <span className="text-primary text-4xl font-black tracking-tight">{currentPlan.price}</span>
                     <span className="text-slate-900 text-xl font-bold">원</span>
                   </div>
-                  <div className="bg-soft-blue text-primary text-[11px] font-black px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 mb-6">
-                    <Zap className="w-3 h-3 fill-primary" />
-                    월 {currentPlan.savings}원 추가 할인 적용됨
+                  <div className="bg-soft-blue text-primary text-[10px] font-black px-3 py-1.5 rounded-full inline-flex flex-col items-center gap-0.5 mb-6">
+                    <div className="flex items-center gap-1.5">
+                      <Zap className="w-3 h-3 fill-primary" />
+                      월 {currentPlan.savings}원 추가 할인 적용됨
+                    </div>
+                    <span className="text-[9px] opacity-70">*2인이상 가족 결합 적용시</span>
                   </div>
                   
                   <button 
